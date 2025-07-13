@@ -1,4 +1,4 @@
-from datasets import load_dataset
+from datasets import load_dataset, Dataset
 import pandas as pd
 import os
 from imblearn.over_sampling import RandomOverSampler
@@ -47,6 +47,9 @@ try:
     train_df = train_df[["text", "label"]]
     valid_df = valid_df[["text", "label"]]
     test_df = test_df[["text", "label"]]
+
+    # Subset the training data to 1,000 examples
+    train_df = train_df.head(1000)
 
     print("Filtered training data shape:", train_df.shape)
     print("Filtered validation data shape:", valid_df.shape)
@@ -120,7 +123,7 @@ try:
 
     # Define optimizer and learning rate schedule
     batch_size = 16
-    num_epochs = 3
+    num_epochs = 1  # Reduced to 1 epoch for ~1-hour training
     num_train_steps = len(tf_train_dataset) * num_epochs
     optimizer, schedule = create_optimizer(
         init_lr=2e-5,
