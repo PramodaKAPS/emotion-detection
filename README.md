@@ -1,2 +1,2 @@
 emotion7
-distilberd imroved with confusion metric
+distilberd improved with confusion metric
